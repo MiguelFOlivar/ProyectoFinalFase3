@@ -1,6 +1,6 @@
 package com.mfigueroa.app.proyectofinal.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -31,7 +31,7 @@ public class Pelicula {
 	@JoinTable(name = "peliculas_generos",
 						joinColumns = {@JoinColumn(name="peliculas_pel_id")},
 						inverseJoinColumns = {@JoinColumn(name="generos_gen_id")})
-	private Set<Genero> generos;
+	private List<Genero> generos;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pel_imagen_id", referencedColumnName = "img_id", nullable = false)
 	private ImagenPelicula imagenPelicula;

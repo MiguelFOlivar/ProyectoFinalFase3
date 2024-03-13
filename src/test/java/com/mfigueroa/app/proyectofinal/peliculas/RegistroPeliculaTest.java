@@ -1,9 +1,8 @@
 package com.mfigueroa.app.proyectofinal.peliculas;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.ArrayList;
+import  java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class RegistroPeliculaTest {
 		pelicula.setTitulo("Wish");
 		pelicula.setUrlWeb("https://www.disney.es/peliculas/wish-el-poder-de-los-deseos");
 		
-		Set<Genero> generos = new HashSet();
+		List<Genero> generos = new ArrayList<>();
 		generos.add(genero1);
 		generos.add(genero2);
 		pelicula.setGeneros(generos);
