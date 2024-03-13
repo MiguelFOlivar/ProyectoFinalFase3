@@ -1,6 +1,8 @@
 package com.mfigueroa.app.proyectofinal.imp;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +46,18 @@ public class PeliculaServiceImp implements IPeliculaService {
 			e.printStackTrace();
 		}
 				return resumenPeliculaDTO;
+	}
+
+	@Override
+	public List<PeliculaDTO> buscarPorTitulo(String titulo) {
+		List<Pelicula>peliculas = peliculaRepository.findByTituloContainingIgnoreCase(titulo);
+		List<PeliculaDTO>peliculasDto = peliculas.stream()
+				.map(p-> {
+					PeliculaDTO peliculaDTO = peliculaMapper.peliculaToPeliculaDTO(p);
+					return peliculaDTO;
+				}).collect(Collectors.toList());
+		
+		return peliculasDto;
 	}
 
 }

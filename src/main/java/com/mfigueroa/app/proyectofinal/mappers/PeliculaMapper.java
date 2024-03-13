@@ -46,4 +46,15 @@ public class PeliculaMapper {
 		resumenPeliculaDTO.setUrlWeb(pelicula.getUrlWeb());
 		return resumenPeliculaDTO;
 	}
+	public PeliculaDTO peliculaToPeliculaDTO(Pelicula pelicula) {
+		PeliculaDTO peliculaDTO = new PeliculaDTO();
+		List<String> generosString = pelicula.getGeneros().stream()
+				.map(g->g.getNombreGenero()).collect(Collectors.toList());
+		peliculaDTO.setGeneros(generosString);
+		peliculaDTO.setImagenPelicula(pelicula.getImagenPelicula().getImagen());
+		peliculaDTO.setTitulo(pelicula.getTitulo());
+		peliculaDTO.setUrlWeb(pelicula.getUrlWeb());
+		peliculaDTO.setNombreImagen(pelicula.getImagenPelicula().getNombreArchivo());
+		return peliculaDTO;
+	}
 }
