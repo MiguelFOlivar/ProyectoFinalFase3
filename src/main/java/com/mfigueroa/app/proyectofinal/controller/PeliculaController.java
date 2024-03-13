@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mfigueroa.app.proyectofinal.dto.PeliculaDTO;
 import com.mfigueroa.app.proyectofinal.dto.ResumenPeliculaDTO;
+import com.mfigueroa.app.proyectofinal.service.IGeneroService;
 import com.mfigueroa.app.proyectofinal.service.IPeliculaService;
 
 @RestController
@@ -24,6 +25,8 @@ import com.mfigueroa.app.proyectofinal.service.IPeliculaService;
 public class PeliculaController {
 @Autowired
 	private IPeliculaService peliculaService;
+@Autowired
+private IGeneroService generoService;
 
 		@PostMapping(value = "/save", consumes = {MediaType.APPLICATION_JSON_VALUE, 
 			MediaType.MULTIPART_FORM_DATA_VALUE})
@@ -37,6 +40,12 @@ public class PeliculaController {
 		@GetMapping("/findbytitle/{titulo}")
 		public ResponseEntity<List<PeliculaDTO>> buscarPorTitulo(@PathVariable String titulo) {
 			List<PeliculaDTO> peliculas = peliculaService.buscarPorTitulo(titulo);
+			return ResponseEntity.ok(peliculas);
+		}
+		
+		@GetMapping("/findbygenre/{genero}")
+		public ResponseEntity<List<PeliculaDTO>> buscarPorGenero(@PathVariable String genero) {
+			List<PeliculaDTO> peliculas = generoService.obtenerPorGenero(genero);
 			return ResponseEntity.ok(peliculas);
 		}
 }
